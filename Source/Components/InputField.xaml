@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Source.Components.InputField"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Source.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" x:Name="Field" d:DesignWidth="800">
+
+    <Grid Width="{Binding ActualWidth, ElementName=Field}">
+        <TextBlock Foreground="#505050"
+                   FontSize="13"
+                   FontFamily="../Fonts/PlusJakartaSans/#Plus Jakarta Sans"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="{Binding HorizontalContentAlignment, ElementName=Field}"
+                   Margin="5 0"
+                   x:Name="PlaceholderBlock"/>
+        <TextBox Background="Transparent"
+                 BorderThickness="0"
+                 FontFamily="../Fonts/PlusJakartaSans/#Plus Jakarta Sans"
+                 FontSize="13"
+                 VerticalContentAlignment="Center" 
+                 HorizontalContentAlignment="{Binding HorizontalContentAlignment, ElementName=Field}" 
+                 HorizontalAlignment="Stretch"
+                 Margin="5 0"
+                 Foreground="White" 
+                 TextWrapping="Wrap"
+                 CaretBrush="White" 
+                 x:Name="FieldBox" 
+                 TextChanged="onFieldTextChanged"/>
+    </Grid>
+
+</UserControl>
