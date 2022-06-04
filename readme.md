@@ -1,7 +1,7 @@
 # sentIn Client
 
 <img src="./Source/Images/sentInFull.png" width="400" align="right"><img>
-Hello. This documentation will help you to get on with 
+This documentation will help you to get on with 
 this project, so I'd recommend reading it till the end
 
 Here will be a piece of information about tools, frameworks, 
