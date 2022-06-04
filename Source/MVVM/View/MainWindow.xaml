@@ -9,10 +9,12 @@
         xmlns:view="clr-namespace:Source.MVVM.View"
         mc:Ignorable="d"
         d:WindowStyle="None"
+        Title="sentIn"
+        Icon="../../Images/sentIn.png"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         Style="{StaticResource BorderlessWindow}"
-        Width="350" MinWidth="350"
-        Height="650" MinHeight="400">
+        Width="350" MinWidth="350" MaxWidth="800"
+        Height="650" MinHeight="650">
 
     <Window.Resources>
         <ResourceDictionary>

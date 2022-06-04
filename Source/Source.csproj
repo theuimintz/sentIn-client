@@ -13,6 +13,7 @@
     <None Remove="Fonts\MPlus1\MPLUS1-VariableFont_wght.ttf" />
     <None Remove="Fonts\MPlus2\MPLUS2-VariableFont_wght.ttf" />
     <None Remove="Fonts\PlusJakartaSans\PlusJakartaSans-VariableFont_wght.ttf" />
+    <None Remove="Images\sentIn.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\PlusJakartaSans\PlusJakartaSans-VariableFont_wght.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\sentIn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
