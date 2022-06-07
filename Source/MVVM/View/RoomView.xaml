@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Source.MVVM.View"
              xmlns:viewmodel="clr-namespace:Source.MVVM.ViewModel"
-             xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:components="clr-namespace:Source.Components" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:components="clr-namespace:Source.Components" xmlns:b="http://schemas.microsoft.com/xaml/behaviors" xmlns:sys="clr-namespace:System;assembly=netstandard"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodel:RoomViewModel}"
              d:DesignHeight="650" 
@@ -16,6 +16,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Themes/ButtonTheme.xaml"/>
                 <ResourceDictionary Source="../../Themes/MessageTheme.xaml"/>
+                <ResourceDictionary Source="../../Themes/ScrollBarTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -83,8 +84,12 @@
                       ItemsSource="{Binding Messages, NotifyOnTargetUpdated=True}"
                       Background="Transparent"
                       BorderThickness="0"
-                      ScrollViewer.ScrollChanged="MessageListView_ScrollChanged">
+                      ScrollViewer.ScrollChanged="MessageListView_ScrollChanged"
+                      ScrollViewer.CanContentScroll="False"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible">
             </ListView>
+
 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -93,14 +98,14 @@
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="1">
-                    <components:InputField Text="{Binding CurrentMessage, Mode=TwoWay}" Placeholder="Message"/>
+                <Border Grid.Column="1" Loaded="OnMessageFieldContainerLoaded">
+                    <components:InputField x:Name="MessageField" Text="{Binding CurrentMessage, Mode=TwoWay}" Placeholder="Message"/>
 
                     <Border.InputBindings>
                         <KeyBinding Key="Enter"
                                     Command="{Binding SendMessageCommand}"/>
                     </Border.InputBindings>
-                    </Border>
+                </Border>
             </Grid>
             
         </Grid>

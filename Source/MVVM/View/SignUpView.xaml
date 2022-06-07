@@ -55,7 +55,7 @@
 
                 
                 <!-- Username field -->
-                <StackPanel Width="250">
+                <StackPanel x:Name="UsernamePanel" Width="250">
 
                     <StackPanel.Resources>
 
@@ -123,7 +123,7 @@
                                         Grid.Column="0"
                                         VerticalAlignment="Center">
                         </fa:FontAwesome>
-                        <components:InputField Text="{Binding Username, Mode=TwoWay}" Placeholder="Type your username" Grid.Column="1"/>
+                        <components:InputField x:Name="UsernameField" Text="{Binding Username, Mode=TwoWay}" Placeholder="Type your username" Grid.Column="1"/>
 
                     </Grid>
 
@@ -149,7 +149,7 @@
                 </StackPanel>
 
                 <!-- Password field-->
-                <StackPanel Width="250" Margin="0 15 0 0">
+                <StackPanel x:Name="PasswordPanel"  Width="250" Margin="0 15 0 0">
 
                     <StackPanel.Resources>
 
@@ -221,7 +221,7 @@
                                         Grid.Column="0"
                                         VerticalAlignment="Center"/>
 
-                        <components:PasswordField Password="{Binding Password, Mode=TwoWay}" Placeholder="Type your password" Grid.Column="1"/>
+                        <components:PasswordField x:Name="PasswordField" Password="{Binding Password, Mode=TwoWay}" Placeholder="Type your password" Grid.Column="1"/>
 
                     </Grid>
 
@@ -257,7 +257,8 @@
                         Margin="0 40 0 0"
                         FontFamily="../../Fonts/PlusJakartaSans/#Plus Jakarta Sans"
                         Command="{Binding SignInCommand}"
-                        Style="{StaticResource CustomButton}">
+                        Style="{StaticResource CustomButton}"
+                        Click="OnSubmit">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
                             <EventTrigger.Actions>

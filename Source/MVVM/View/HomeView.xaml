@@ -41,14 +41,14 @@
                        Margin="10 0"/>
 
             <Border Margin="10 5" Grid.Row="1"
-                    CornerRadius="5" Background="#212126">
+                    CornerRadius="5" Background="#212126" Loaded="OnSearchFieldContainerLoaded">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="30"/>
                     </Grid.ColumnDefinitions>
-                    <components:InputField Placeholder="Search"/>
+                    <components:InputField x:Name="SearchField" Placeholder="Search"/>
                     <fa:FontAwesome Icon="Search" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                                     Foreground="#505050"
                                     FontSize="17"/>
@@ -61,6 +61,7 @@
                       Background="Transparent"
                       BorderThickness="0"
                       ItemsSource="{Binding RoomList}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ItemContainerStyle="{StaticResource CustomRoom}">
                 
             </ListView>

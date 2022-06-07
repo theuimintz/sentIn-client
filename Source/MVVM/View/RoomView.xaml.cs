@@ -21,5 +21,10 @@ namespace Source.MVVM.View
                 scrollViewer.ScrollToBottom();
             }
         }
+
+        private void OnMessageFieldContainerLoaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ((TextBox)MessageField.FindName("FieldBox"))?.Focus();
+        }
     }
 }

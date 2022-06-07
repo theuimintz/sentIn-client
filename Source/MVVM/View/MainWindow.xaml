@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Source" xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:controls="clr-namespace:Source.Controls"
         xmlns:viewmodel="clr-namespace:Source.MVVM.ViewModel" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:view="clr-namespace:Source.MVVM.View"
+        xmlns:view="clr-namespace:Source.MVVM.View" xmlns:sys="clr-namespace:System;assembly=netstandard"
         mc:Ignorable="d"
         d:WindowStyle="None"
         Title="sentIn"
@@ -20,6 +20,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Themes/ButtonTheme.xaml"/>
+                <ResourceDictionary Source="../../Themes/ScrollBarTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -29,6 +30,11 @@
             Background="#1c1b1c"
             BorderThickness="1"
             BorderBrush="#505050">
+
+        <Border.Resources>
+            <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MainScrollBarTheme}"/>
+            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">7</sys:Double>
+        </Border.Resources>
 
         <Border.OpacityMask>
             <VisualBrush>

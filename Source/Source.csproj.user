@@ -66,6 +66,9 @@
     <Page Update="Themes\RoomTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Themes\ScrollBarTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Themes\WindowTheme.xaml">
       <SubType>Designer</SubType>
     </Page>

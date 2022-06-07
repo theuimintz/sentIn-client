@@ -51,7 +51,7 @@
                         Grid.Row="1">
 
                 <!-- Username field -->
-                <StackPanel Width="250">
+                <StackPanel x:Name="UsernamePanel" Width="250">
                 
                     <StackPanel.Resources>
 
@@ -117,7 +117,7 @@
                                         VerticalAlignment="Center">
                         </fa:FontAwesome>
 
-                        <components:InputField Text="{Binding Username, Mode=TwoWay}" Placeholder="Type your username" Grid.Column="1"/>
+                        <components:InputField x:Name="UserField" Text="{Binding Username, Mode=TwoWay}" Placeholder="Type your username" Grid.Column="1"/>
 
                     </Grid>
 
@@ -141,7 +141,7 @@
                 </StackPanel>
                 
                 <!-- Password field-->
-                <StackPanel Width="250" Margin="0 15 0 0">
+                <StackPanel Width="250" Margin="0 15 0 0" x:Name="PasswordPanel">
 
                     <StackPanel.Resources>
 
@@ -213,8 +213,7 @@
                                         Grid.Column="0"
                                         VerticalAlignment="Center"/>
 
-                        <components:PasswordField Password="{Binding Password, Mode=TwoWay}" Placeholder="Type your password" Grid.Column="1"/>
-
+                        <components:PasswordField x:Name="PasswordField" Password="{Binding Password, Mode=TwoWay}" Placeholder="Type your password" Grid.Column="1"/>
                     </Grid>
 
                     <Border x:Name="PasswordBorder" Width="{Binding Width, ElementName=UsernameField}" 
@@ -246,7 +245,8 @@
                         Margin="0 40 0 0"
                         FontFamily="../../Fonts/PlusJakartaSans/#Plus Jakarta Sans"
                         Command="{Binding SubmitCommand}"
-                        Style="{StaticResource CustomButton}">
+                        Style="{StaticResource CustomButton}"
+                        Click="OnSubmit">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
                             <EventTrigger.Actions>
@@ -292,7 +292,8 @@
                         FontSize="13"
                         FontFamily="../../Fonts/PlusJakartaSans/#Plus Jakarta Sans"
                         Style="{StaticResource CustomButton}"
-                        Command="{Binding SwitchViewCommand}">
+                        Command="{Binding SwitchViewCommand}"
+                        >
 
                 </Button>
 

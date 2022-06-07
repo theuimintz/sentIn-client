@@ -7,7 +7,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListViewItem}">
 
-                        <Border Margin="10 0 10 0" Height="60" CornerRadius="2" Background="#1c1b1c" Cursor="Hand" x:Name="ListViewItem">
+                        <Border Margin="10 0 10 0" Height="60" Width="{TemplateBinding Width}" CornerRadius="2" Background="#1c1b1c" Cursor="Hand" x:Name="ListViewItem">
 
                             <Border.Resources>
                                 <Storyboard x:Key="ToHovered">
