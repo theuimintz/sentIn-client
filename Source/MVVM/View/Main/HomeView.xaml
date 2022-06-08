@@ -33,7 +33,7 @@
 
             <TextBlock Text="Home"
                        Foreground="White"
-                       FontSize="28"
+                       FontSize="30"
                        FontWeight="Bold"
                        FontFamily="../../Fonts/MPlus/#M PLUS 1"
                        VerticalAlignment="Bottom"

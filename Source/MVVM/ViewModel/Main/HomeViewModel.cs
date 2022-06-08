@@ -49,7 +49,6 @@ namespace Source.MVVM.ViewModel.Main
         public HomeViewModel(ViewModelStore viewModelStore, Server server) : base(viewModelStore)
         {
             this.server = server;
-
             this.server.RoomFound += OnRoomFound;
 
             this.searchText = "";
