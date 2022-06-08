@@ -1,5 +1,6 @@
-﻿using Source.MVVM.View;
-using Source.MVVM.ViewModel;
+﻿using Source.MVVM.View.Windows;
+using Source.MVVM.ViewModel.Main;
+using Source.MVVM.ViewModel.Windows;
 using Source.Net;
 using Source.Store;
 using System.Windows;

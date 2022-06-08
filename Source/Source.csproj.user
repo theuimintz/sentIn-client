@@ -13,19 +13,19 @@
     <Compile Update="Components\PasswordField.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\HomeView.xaml.cs">
+    <Compile Update="MVVM\View\Main\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\IntroView.xaml.cs">
+    <Compile Update="MVVM\View\Main\IntroView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\SignInView.xaml.cs">
+    <Compile Update="MVVM\View\Auth\SignInView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\RoomView.xaml.cs">
+    <Compile Update="MVVM\View\Main\RoomView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\SignUpView.xaml.cs">
+    <Compile Update="MVVM\View\Auth\SignUpView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -36,28 +36,31 @@
     <Page Update="Components\PasswordField.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\HomeView.xaml">
+    <Page Update="MVVM\View\Main\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\IntroView.xaml">
+    <Page Update="MVVM\View\Main\IntroView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\SignInView.xaml">
+    <Page Update="MVVM\View\Auth\SignInView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\MainWindow.xaml">
+    <Page Update="MVVM\View\Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\RoomView.xaml">
+    <Page Update="MVVM\View\Main\RoomView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\SignUpView.xaml">
+    <Page Update="MVVM\View\Auth\SignUpView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\ButtonTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\CustomContentControlTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\FontTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\MessageTheme.xaml">

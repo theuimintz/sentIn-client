@@ -1,17 +1,21 @@
-﻿<Window x:Class="Source.MVVM.View.MainWindow"
+﻿<Window x:Class="Source.MVVM.View.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Source" xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:controls="clr-namespace:Source.Controls"
         xmlns:viewmodel="clr-namespace:Source.MVVM.ViewModel" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:view="clr-namespace:Source.MVVM.View" xmlns:sys="clr-namespace:System;assembly=netstandard"
+        xmlns:sys="clr-namespace:System;assembly=netstandard"
+        xmlns:auth="clr-namespace:Source.MVVM.View.Auth"
+        xmlns:main="clr-namespace:Source.MVVM.View.Main"
+        xmlns:authvm="clr-namespace:Source.MVVM.ViewModel.Auth"
+        xmlns:mainvm="clr-namespace:Source.MVVM.ViewModel.Main"
+        xmlns:windows="clr-namespace:Source.MVVM.View.Windows"
         mc:Ignorable="d"
         d:WindowStyle="None"
         Title="sentIn"
-        Icon="../../Images/sentIn.png"
-        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+        Icon="../../../Images/sentIn.png"
+        d:DataContext="{d:DesignInstance Type=windows:MainViewModel}"
         Style="{StaticResource BorderlessWindow}"
         Width="350" MinWidth="350" MaxWidth="800"
         Height="650" MinHeight="650">
@@ -19,8 +23,8 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Themes/ButtonTheme.xaml"/>
-                <ResourceDictionary Source="../../Themes/ScrollBarTheme.xaml"/>
+                <ResourceDictionary Source="../../../Themes/ButtonTheme.xaml"/>
+                <ResourceDictionary Source="../../../Themes/ScrollBarTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -92,20 +96,20 @@
             <!-- Content Control -->
             <controls:CustomContentControl Grid.Row="1" Content="{Binding CurrentViewModel}">
                 <controls:CustomContentControl.Resources>
-                    <DataTemplate DataType="{x:Type viewmodel:SignInViewModel}">
-                        <view:SignInView/>
+                    <DataTemplate DataType="{x:Type authvm:SignInViewModel}">
+                        <auth:SignInView/>
                     </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewmodel:SignUpViewModel}">
-                        <view:SignUpView/>
+                    <DataTemplate DataType="{x:Type authvm:SignUpViewModel}">
+                        <auth:SignUpView/>
                     </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewmodel:IntroViewModel}">
-                        <view:IntroView/>
+                    <DataTemplate DataType="{x:Type mainvm:IntroViewModel}">
+                        <main:IntroView/>
                     </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
-                        <view:HomeView/>
+                    <DataTemplate DataType="{x:Type mainvm:HomeViewModel}">
+                        <main:HomeView/>
                     </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewmodel:RoomViewModel}">
-                        <view:RoomView/>
+                    <DataTemplate DataType="{x:Type mainvm:RoomViewModel}">
+                        <main:RoomView/>
                     </DataTemplate>
                 </controls:CustomContentControl.Resources>
             </controls:CustomContentControl>

@@ -1,21 +1,20 @@
-﻿<UserControl x:Class="Source.MVVM.View.SignUpView"
+﻿<UserControl x:Class="Source.MVVM.View.Auth.SignUpView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:viewmodel="clr-namespace:Source.MVVM.ViewModel" 
              xmlns:components="clr-namespace:Source.Components" 
-             xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:fa="http://schemas.fontawesome.io/icons/" 
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:authvm="clr-namespace:Source.MVVM.ViewModel.Auth"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance Type=viewmodel:SignUpViewModel}"
-             d:DesignHeight="650" 
-             d:DesignWidth="350">
+             d:DataContext="{d:DesignInstance Type=authvm:SignUpViewModel}">
 
     <!-- Resources -->
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Themes/ButtonTheme.xaml"/>
+                <ResourceDictionary Source="../../../Themes/ButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -42,7 +41,7 @@
                 <TextBlock Text="Sign Up"
                            TextAlignment="Center"
                            Foreground="White"
-                           FontFamily="../../Fonts/PlusJakartaSans/#Plus Jakarta Sans"
+                           FontFamily="{StaticResource PlusJakartaSans}"
                            FontSize="40"
                            FontWeight="Bold"
                            HorizontalAlignment="Center"/>
@@ -255,8 +254,8 @@
                         Width="150"
                         Height="35"
                         Margin="0 40 0 0"
-                        FontFamily="../../Fonts/PlusJakartaSans/#Plus Jakarta Sans"
-                        Command="{Binding SignInCommand}"
+                        FontFamily="{StaticResource MPlus2}"
+                        Command="{Binding SubmitCommand}"
                         Style="{StaticResource CustomButton}"
                         Click="OnSubmit">
                     <Button.Triggers>
@@ -302,7 +301,7 @@
                         HorizontalAlignment="Center"
                         Margin="0 20 0 0"
                         FontSize="13"
-                        FontFamily="../../Fonts/PlusJakartaSans/#Plus Jakarta Sans"
+                        FontFamily="{StaticResource MPlus2}"
                         Style="{StaticResource CustomButton}"
                         Command="{Binding SwitchViewCommand}"/>
 

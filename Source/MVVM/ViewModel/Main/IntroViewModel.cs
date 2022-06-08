@@ -1,8 +1,9 @@
 ﻿using Source.Core;
+using Source.MVVM.ViewModel.Auth;
 using Source.Net;
 using Source.Store;
 
-namespace Source.MVVM.ViewModel
+namespace Source.MVVM.ViewModel.Main
 {
     internal class IntroViewModel : ViewModelBase
     {

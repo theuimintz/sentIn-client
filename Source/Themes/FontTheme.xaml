@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="AnekTelugu">../Fonts/AnekTelugu/#Anek Telugu</FontFamily>
+    <FontFamily x:Key="MPlus2">../Fonts/MPlus2/#M PLUS 2</FontFamily>
+    <FontFamily x:Key="MPlus1">../Fonts/MPlus2/#M PLUS 1</FontFamily>
+    <FontFamily x:Key="PlusJakartaSans">../Fonts/PlusJakartaSans/#Plus Jakarta Sans</FontFamily>
+
+</ResourceDictionary>

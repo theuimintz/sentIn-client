@@ -1,14 +1,15 @@
-﻿using System.Windows.Controls;
+﻿using Source.Components;
+using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace Source.MVVM.View
+namespace Source.MVVM.View.Auth
 {
     /// <summary>
-    /// Interaction logic for AuthView.xaml
+    /// Interaction logic for SigninView.xaml
     /// </summary>
-    public partial class SignInView : UserControl
+    public partial class SignUpView : UserControl
     {
-        public SignInView()
+        public SignUpView()
         {
             InitializeComponent();
         }
@@ -16,7 +17,7 @@ namespace Source.MVVM.View
         private void OnSubmit(object sender, System.Windows.RoutedEventArgs e)
         {
             if (PasswordField.Password == string.Empty) (PasswordPanel.FindResource("ToError") as Storyboard)?.Begin();
-            if (UserField.Text == string.Empty) (UsernamePanel.FindResource("ToError") as Storyboard)?.Begin();
+            if (UsernameField.Text == string.Empty) (UsernamePanel.FindResource("ToError") as Storyboard)?.Begin();
         }
     }
 }

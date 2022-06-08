@@ -1,7 +1,7 @@
 ﻿using Source.Net;
 using Source.Store;
 
-namespace Source.MVVM.ViewModel
+namespace Source.MVVM.ViewModel.Windows
 {
     internal class MainViewModel : ViewModelBase
     {

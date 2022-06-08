@@ -1,8 +1,9 @@
 ﻿using Source.Core;
+using Source.MVVM.ViewModel.Main;
 using Source.Net;
 using Source.Store;
 
-namespace Source.MVVM.ViewModel
+namespace Source.MVVM.ViewModel.Auth
 {
     internal class SignInViewModel : ViewModelBase
     {

@@ -1,5 +1,4 @@
-﻿using Source.MVVM.ViewModel;
-using Source.Core;
+﻿using Source.Core;
 using Source.MVVM.Model;
 using Source.Net;
 using Source.Store;
@@ -8,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 
-namespace Source.MVVM.ViewModel
+namespace Source.MVVM.ViewModel.Main
 {
     internal class HomeViewModel : ViewModelBase
     {

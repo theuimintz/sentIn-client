@@ -1,8 +1,9 @@
 ﻿using Source.Core;
+using Source.MVVM.ViewModel.Main;
 using Source.Net;
 using Source.Store;
 
-namespace Source.MVVM.ViewModel
+namespace Source.MVVM.ViewModel.Auth
 {
     internal class SignUpViewModel : ViewModelBase
     {
@@ -57,6 +58,8 @@ namespace Source.MVVM.ViewModel
         {
             this.server = server;
 
+            this.server.SignedIn += OnSignedUp;
+
             username = string.Empty;
             password = string.Empty;
 
@@ -77,6 +80,11 @@ namespace Source.MVVM.ViewModel
         private void OnGoToLogIn()
         {
             ViewModelStore.CurrentViewModel = new SignInViewModel(ViewModelStore, server);
+        }
+
+        private void OnSignedUp()
+        {
+            ViewModelStore.CurrentViewModel = new HomeViewModel(ViewModelStore, server);
         }
     }
 }

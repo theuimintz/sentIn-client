@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 
-namespace Source.MVVM.ViewModel
+namespace Source.MVVM.ViewModel.Main
 {
     internal class RoomViewModel : ViewModelBase
     {

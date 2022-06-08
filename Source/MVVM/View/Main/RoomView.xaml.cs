@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace Source.MVVM.View
+namespace Source.MVVM.View.Main
 {
     /// <summary>
     /// Interaction logic for RoomView.xaml
