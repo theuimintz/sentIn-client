@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/" 
              xmlns:main="clr-namespace:Source.MVVM.ViewModel.Main" 
-             xmlns:components="clr-namespace:Source.Components"
+             xmlns:components="clr-namespace:Source.Components" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=main:HomeViewModel}">
 
@@ -47,7 +47,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="30"/>
                     </Grid.ColumnDefinitions>
-                    <components:InputField x:Name="SearchField" Placeholder="Search"/>
+                    <components:InputField x:Name="SearchField" Placeholder="Search" Text="{Binding SearchText, Mode=TwoWay}"/>
                     <fa:FontAwesome Icon="Search" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                                     Foreground="#505050"
                                     FontSize="17"/>
@@ -59,9 +59,39 @@
                       Margin="0 5"
                       Background="Transparent"
                       BorderThickness="0"
+                      ItemsSource="{Binding SearchRoomList}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ItemContainerStyle="{StaticResource CustomRoom}">
+                
+                <b:Interaction.Triggers>
+                    <b:DataTrigger Binding="{Binding ElementName=SearchField, Path=Text.Length}" Value="1">
+                        <b:ChangePropertyAction PropertyName="Visibility" Value="Visible"/>
+                    </b:DataTrigger>
+
+                    <b:DataTrigger Binding="{Binding ElementName=SearchField, Path=Text.Length}" Value="0">
+                        <b:ChangePropertyAction PropertyName="Visibility" Value="Collapsed"/>
+                    </b:DataTrigger>
+                </b:Interaction.Triggers>
+            </ListView>
+
+
+            <ListView Grid.Row="2"
+                      Margin="0 5"
+                      Background="Transparent"
+                      BorderThickness="0"
                       ItemsSource="{Binding RoomList}"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ItemContainerStyle="{StaticResource CustomRoom}">
+
+                <b:Interaction.Triggers>
+                    <b:DataTrigger Binding="{Binding ElementName=SearchField, Path=Text.Length}" Value="0">
+                        <b:ChangePropertyAction PropertyName="Visibility" Value="Visible"/>
+                    </b:DataTrigger>
+
+                    <b:DataTrigger Binding="{Binding ElementName=SearchField, Path=Text.Length}" Value="1">
+                        <b:ChangePropertyAction PropertyName="Visibility" Value="Collapsed"/>
+                    </b:DataTrigger>
+                </b:Interaction.Triggers>
                 
             </ListView>
 

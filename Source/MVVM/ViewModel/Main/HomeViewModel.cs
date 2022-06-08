@@ -21,6 +21,26 @@ namespace Source.MVVM.ViewModel.Main
         /// </summary>
         public ObservableCollection<RoomModel> RoomList { get; }
 
+
+        /// <summary>
+        /// Found rooms collection
+        /// </summary>
+        public ObservableCollection<RoomModel> SearchRoomList { get; set; }
+
+        private string searchText;
+        public string SearchText
+        {
+            get => searchText;
+            set
+            {
+                searchText = value;
+
+                server.SendRoomToFind(searchText);
+                OnPropertyChanged(nameof(searchText));
+            }
+        }
+
+
         public RelayCommand EnterRoomCommand { get; }
 
         /// <summary>
@@ -30,7 +50,13 @@ namespace Source.MVVM.ViewModel.Main
         {
             this.server = server;
 
+            this.server.RoomFound += OnRoomFound;
+
+            this.searchText = "";
+
             RoomList = new ObservableCollection<RoomModel>();
+            SearchRoomList = new ObservableCollection<RoomModel>();
+
             EnterRoomCommand = new RelayCommand(o => OnEnterRoom((RoomModel)o));
         }
 
@@ -52,6 +78,20 @@ namespace Source.MVVM.ViewModel.Main
                         RoomList.Add(room);
                     });
                 }
+            });
+        }
+
+
+        /// <summary>
+        /// Calls when found room was received from server
+        /// </summary>
+        /// <param name="room"></param>
+        private void OnRoomFound(List<RoomModel> room)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                SearchRoomList = new ObservableCollection<RoomModel>(room);
+                OnPropertyChanged(nameof(SearchRoomList));
             });
         }
 

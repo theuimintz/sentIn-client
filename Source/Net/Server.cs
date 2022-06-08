@@ -22,6 +22,7 @@ namespace Source.Net
         public event Action? SignInRejected;
         public event Action? LogInRejected;
 
+        public event Action<List<RoomModel>> RoomFound;
         public event Action<List<RoomModel>>? RoomListReceived;
         public event Action<List<MessageModel>>? MessageListReceived;
 
@@ -235,6 +236,28 @@ namespace Source.Net
         }
 
 
+        /// <summary>
+        /// Sends the find request built with room's name
+        /// </summary>
+        /// <param name="name"></param>
+        public async void SendRoomToFind(string name)
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    PacketBuilder pb = new PacketBuilder();
+
+                    pb.WriteOpcode(152);
+                    pb.WriteData(name);
+
+                    client.Client.Send(pb.GetPacketBytes());
+                }
+                catch (Exception) { }
+            });
+        }
+
+
         #endregion
 
         #region Read Packet Methods
@@ -266,6 +289,9 @@ namespace Source.Net
                         case 109:
                             ReadMessageList();
                             break;
+                        case 152:
+                            ReadSearchResponce();
+                            break;
                         case 159:
                             ReadRoomList();
                             break;
@@ -274,7 +300,6 @@ namespace Source.Net
                 catch (Exception) { }
             }
         }
-
 
         /// <summary>
         /// Asynchronously begins reading packets from stream
@@ -286,6 +311,31 @@ namespace Source.Net
                 ReadPackets();
             });
         }
+
+
+        public void ReadSearchResponce()
+        {
+            try
+            {
+                if (pr == null) return;
+
+                List<RoomModel> rooms = new List<RoomModel>();
+
+                int len = pr.ReadInteger();
+                for (int i = 0; i < len; i++)
+                {
+                    RoomModel room = pr.ReadRoom();
+                    rooms.Add(room);
+                }
+
+                RoomFound?.Invoke(rooms);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
 
         /// <summary>
