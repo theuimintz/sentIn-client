@@ -84,7 +84,7 @@ namespace Source.MVVM.ViewModel.Auth
 
         private void OnSignedUp()
         {
-            ViewModelStore.CurrentViewModel = new HomeViewModel(ViewModelStore, server);
+            ViewModelStore.CurrentViewModel = new ContentViewModel(ViewModelStore, server, new HomeViewModel(ViewModelStore, server));
         }
     }
 }

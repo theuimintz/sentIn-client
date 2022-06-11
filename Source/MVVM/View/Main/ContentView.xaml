@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Source.MVVM.View.Main.ContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:local="clr-namespace:Source.MVVM.View.Main"
+             xmlns:mainvm="clr-namespace:Source.MVVM.ViewModel.Main" xmlns:b="http://schemas.microsoft.com/xaml/behaviors" xmlns:converters="clr-namespace:Source.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="350"
+             d:DataContext="{d:DesignInstance Type=mainvm:ContentViewModel}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Themes/ButtonTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+
+        <Grid.Resources>
+            <converters:DataTypeConverter x:Key="DataTypeConverter"/>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <ContentControl Content="{Binding CurrentPage}">
+
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type mainvm:HomeViewModel}">
+                    <local:HomeView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+            
+        </ContentControl>
+        
+        <Border Grid.Row="1" Margin="30 0">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border>
+
+                    <Button Style="{StaticResource CustomButton}" 
+                            Background="Transparent" 
+                            fa:Awesome.Content="NewspaperOutline" 
+                            FontSize="20" 
+                            Foreground="#606060"
+                            x:Name="ExploreButton"/>
+
+                </Border>
+
+                <Border Grid.Column="1">
+
+                    <Button Background="Transparent" 
+                            fa:Awesome.Content="Commenting" 
+                            FontSize="20" 
+                            x:Name="ChatButton">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource CustomButton}">
+                                <Style.Setters>
+                                    <Setter Property="Foreground" Value="#606060"/>
+                                </Style.Setters>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentPage, Converter={StaticResource DataTypeConverter}}" Value="{x:Type mainvm:HomeViewModel}">
+                                        <Setter Property="Foreground" Value="LightCyan"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                </Border>
+
+                <Border Grid.Column="2">
+
+                    <Button Style="{StaticResource CustomButton}" 
+                            Background="Transparent" 
+                            fa:Awesome.Content="Cogs" 
+                            FontSize="20" 
+                            Foreground="#606060"
+                            x:Name="SettingsButton"/>
+
+                </Border>
+
+            </Grid>
+
+        </Border>
+
+        <b:Interaction.Triggers>
+        </b:Interaction.Triggers>
+
+    </Grid>
+</UserControl>

@@ -118,7 +118,7 @@ namespace Source.MVVM.ViewModel.Main
 
         private void OnGoHome()
         {
-            ViewModelStore.CurrentViewModel = new HomeViewModel(ViewModelStore, server);
+            ViewModelStore.CurrentViewModel = new ContentViewModel(ViewModelStore, server, new HomeViewModel(ViewModelStore, server));
         }
 
         private void OnSendMessage()

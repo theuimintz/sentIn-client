@@ -1,0 +1,195 @@
+﻿<UserControl x:Class="Source.Components.RoomInitializationModel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Source.Components" xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <Storyboard x:Key="In">
+            <DoubleAnimation To="0.5"
+                             From="0"
+                             Duration="0:0:.2"
+                             Storyboard.TargetName="Opacity"
+                             Storyboard.TargetProperty="Opacity"/>
+            <DoubleAnimation To="1"
+                             From="0"
+                             Duration="0:0:.2"
+                             Storyboard.TargetName="Model"
+                             Storyboard.TargetProperty="Opacity"/>
+            <DoubleAnimation To="0"
+                             From="150"
+                             Duration="0:0:.2"
+                             Storyboard.TargetName="ModelTranslate"
+                             Storyboard.TargetProperty="X">
+                <DoubleAnimation.EasingFunction>
+                    <PowerEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="Out" Completed="OnOutCompleted">
+            <DoubleAnimation To="0"
+                             Duration="0:0:0.15"
+                             Storyboard.TargetName="Opacity"
+                             Storyboard.TargetProperty="Opacity"/>
+            <DoubleAnimation To="0"
+                             Duration="0:0:0.15"
+                             Storyboard.TargetName="Model"
+                             Storyboard.TargetProperty="Opacity"/>
+        </Storyboard>
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Rectangle Fill="#1c1b1c" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0.5" x:Name="Opacity"/>
+
+        <Border Background="#202020" CornerRadius="5" Width="300"
+                Height="150" x:Name="Model">
+
+            <Border.RenderTransform>
+                <TranslateTransform x:Name="ModelTranslate"/>
+            </Border.RenderTransform>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                
+                <Border Grid.Row="0" Margin="15 0">
+                    <StackPanel Orientation="Horizontal"> 
+                        <Border Background="Black" Width="50" Height="50" CornerRadius="30" VerticalAlignment="Center"/>
+                        <Border>
+                            <StackPanel x:Name="UsernamePanel" VerticalAlignment="Center" Width="250" Margin="20 0 0 0">
+
+                                <StackPanel.Resources>
+
+                                    <Storyboard x:Key="ToFocused">
+
+                                        <ColorAnimation To="#fff" 
+                                        Duration="0:0:.2" 
+                                        Storyboard.TargetName="GroupOutline" 
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+
+                                        <ColorAnimation To="#fff" 
+                                        Duration="0:0:.2" 
+                                        Storyboard.TargetName="GroupBorder" 
+                                        Storyboard.TargetProperty="BorderBrush.Color"/>
+                                    </Storyboard>
+
+                                    <Storyboard x:Key="ToError">
+
+                                        <ColorAnimation To="Red" 
+                                        Duration="0:0:.2" 
+                                        Storyboard.TargetName="GroupOutline" 
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+                                        <ColorAnimation To="Red" 
+                                        Duration="0:0:.2" 
+                                        Storyboard.TargetName="GroupBorder" 
+                                        Storyboard.TargetProperty="BorderBrush.Color"/>
+
+                                    </Storyboard>
+
+                                    <Storyboard x:Key="ToDefault">
+
+                                        <ColorAnimation To="#505050" 
+                                        Duration="0:0:.2" 
+                                        Storyboard.TargetName="GroupOutline" 
+                                        Storyboard.TargetProperty="Foreground.Color"/>
+                                        <ColorAnimation To="#505050" 
+                                        Duration="0:0:.2" 
+                                        Storyboard.TargetName="GroupBorder" 
+                                        Storyboard.TargetProperty="BorderBrush.Color"/>
+
+                                    </Storyboard>
+
+                                </StackPanel.Resources>
+
+                                <TextBlock Text="Group name" 
+                                           Foreground="White" 
+                                           FontFamily="../../Fonts/#Arimo" 
+                                           FontSize="12" 
+                                           FontWeight="Bold"/>
+
+                                <Grid Height="35" Width="250">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <fa:FontAwesome Name="GroupOutline"
+                                        Icon="Users"
+                                        Foreground="#505050"
+                                        FontSize="17"
+                                        Grid.Column="0"
+                                        VerticalAlignment="Center">
+                                    </fa:FontAwesome>
+
+                                    <local:InputField x:Name="GroupNameField" Text="{Binding RoomName, Mode=TwoWay}" Placeholder="Type group name here" Grid.Column="1"/>
+
+                                </Grid>
+
+                                <Border Name="GroupBorder" Width="{Binding Width, ElementName=GroupNameField}" 
+                            BorderBrush="#505050"
+                            BorderThickness="0.5"
+                            CornerRadius="5"/>
+
+                                <b:Interaction.Triggers>
+
+                                    <b:EventTrigger EventName="GotFocus">
+                                        <b:ControlStoryboardAction Storyboard="{StaticResource ToFocused}" ControlStoryboardOption="Play"/>
+                                    </b:EventTrigger>
+
+                                    <b:EventTrigger EventName="LostFocus">
+                                        <b:ControlStoryboardAction Storyboard="{StaticResource ToDefault}" ControlStoryboardOption="Play"/>
+                                    </b:EventTrigger>
+
+                                </b:Interaction.Triggers>
+
+                            </StackPanel>
+
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10 0" HorizontalAlignment="Right">
+
+                    <StackPanel.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="../Themes/ButtonTheme.xaml"/>
+                            </ResourceDictionary.MergedDictionaries>
+                        </ResourceDictionary>
+                    </StackPanel.Resources>
+
+                    <Button Style="{StaticResource CustomButton}"
+                            Background="#303030"
+                            Content="Cancel"
+                            Width="80"
+                            Foreground="White"
+                            Height="30"
+                            Click="OnCancelButtonClicked"/>
+
+                    <Button Style="{StaticResource CustomButton}"
+                            Background="#303030"
+                            Content="Submit"
+                            Foreground="White"
+                            Width="80"
+                            Margin="10 0 0 0"
+                            Height="30"
+                            Command="{Binding CreateRoomCommand}"
+                            Click="OnCancelButtonClicked"/>
+                </StackPanel>
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</UserControl>

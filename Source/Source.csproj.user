@@ -16,6 +16,12 @@
     <Compile Update="Components\PasswordField.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Components\RoomInitializationModel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\Main\ContentView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\Main\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,6 +46,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\PasswordField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\RoomInitializationModel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\Main\ContentView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\Main\HomeView.xaml">

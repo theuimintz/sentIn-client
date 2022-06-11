@@ -80,7 +80,7 @@
                             Style="{StaticResource CustomMenuButton}">
                         <b:Interaction.Triggers>
                             <b:EventTrigger EventName="Click">
-                                <b:ChangePropertyAction TargetName="Menu" PropertyName="IsVisible" Value="True"/>
+                                <b:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.MenuViewModel}" PropertyName="IsVisible" Value="True"/>
                             </b:EventTrigger>
                         </b:Interaction.Triggers>
                     </Button>
@@ -103,7 +103,17 @@
 
             </Border>
 
-            <components:Menu x:Name="Menu" Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="1" IsVisible="False"/>
+            <components:Menu x:Name="Menu"
+                             Grid.Row="0" Grid.RowSpan="2"
+                             Panel.ZIndex="1"
+                             IsVisible="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.MenuViewModel.IsVisible, Mode=TwoWay}"
+                             DataContext="{Binding MenuViewModel}">
+            </components:Menu>
+
+            <components:RoomInitializationModel Grid.Row="1" 
+                                                Panel.ZIndex="1" 
+                                                IsVisible="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.RoomInitializationViewModel.IsVisible, Mode=TwoWay}"
+                                                DataContext="{Binding RoomInitializationViewModel}"/>
 
             <!-- Content Control -->
             <controls:CustomContentControl Grid.Row="1" Content="{Binding CurrentViewModel}">
@@ -117,8 +127,8 @@
                     <DataTemplate DataType="{x:Type mainvm:IntroViewModel}">
                         <main:IntroView/>
                     </DataTemplate>
-                    <DataTemplate DataType="{x:Type mainvm:HomeViewModel}">
-                        <main:HomeView/>
+                    <DataTemplate DataType="{x:Type mainvm:ContentViewModel}">
+                        <main:ContentView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type mainvm:RoomViewModel}">
                         <main:RoomView/>

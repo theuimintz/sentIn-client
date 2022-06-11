@@ -172,6 +172,23 @@ namespace Source.Net
             });
         }
 
+        public async void SendRoomCreationRequest(string roomname, Action<string>? callback = null)
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    PacketBuilder pb = new PacketBuilder();
+                    pb.WriteOpcode(151);
+                    pb.WriteData(roomname);
+
+                    client.Client.Send(pb.GetPacketBytes());
+                    callback?.Invoke(string.Empty);
+                }
+                catch (Exception ex) { callback?.Invoke(ex.Message); }
+            });
+        }
+
 
         /// <summary>
         /// Asynchronously sends message list request to a remote server

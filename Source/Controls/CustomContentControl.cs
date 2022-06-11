@@ -58,7 +58,7 @@ namespace Source.Controls
         {
             IEasingFunction ease = new CubicEase
             { EasingMode = EasingMode.EaseInOut };
-            var duration = new Duration(TimeSpan.FromSeconds(0.4));
+            var duration = new Duration(TimeSpan.FromSeconds(0.35));
             var anim = new DoubleAnimation(from, to, duration)
             { EasingFunction = ease };
             if (whenDone != null)

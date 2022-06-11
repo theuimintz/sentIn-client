@@ -50,6 +50,7 @@ namespace Source.MVVM.ViewModel.Main
         {
             this.server = server;
             this.server.RoomFound += OnRoomFound;
+            this.server.RoomListReceived += OnRoomListReceived;
 
             this.searchText = "";
 

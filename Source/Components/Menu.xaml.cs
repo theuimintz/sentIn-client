@@ -24,6 +24,11 @@ namespace Source.Components
         public Menu()
         {
             InitializeComponent();
+
+            if (IsVisible == false)
+                Visibility = Visibility.Collapsed;
+            else
+                ((Storyboard)FindResource("In")).Begin();
         }
 
         private static void OnControlVisibilityChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)

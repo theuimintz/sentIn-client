@@ -25,6 +25,7 @@ namespace Source
             };
             mainWindow.Show();
 
+
             base.OnStartup(e);
 
         }
