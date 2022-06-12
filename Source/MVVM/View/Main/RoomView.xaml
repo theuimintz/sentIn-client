@@ -105,7 +105,38 @@
                         <KeyBinding Key="Enter"
                                     Command="{Binding SendMessageCommand}"/>
                     </Border.InputBindings>
+
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Setters>
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </Style.Setters>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.IsJoined}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
                 </Border>
+
+                <Button Grid.ColumnSpan="3" Content="Join" Foreground="#606060" Margin="5" Background="#212126" FontFamily="{StaticResource MPlus2}" FontSize="13" Command="{Binding JoinRoomCommand}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource CustomButton}">
+                            <Style.Setters>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </Style.Setters>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsJoined}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                                
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
             </Grid>
             
         </Grid>

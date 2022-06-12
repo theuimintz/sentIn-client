@@ -19,6 +19,8 @@ namespace Source.Net
         public event Action? SignedIn;
         public event Action? LoggedIn;
 
+        public event Action<RoomModel>? RoomJoined;
+
         public event Action? SignInRejected;
         public event Action? LogInRejected;
 
@@ -275,6 +277,22 @@ namespace Source.Net
         }
 
 
+        /// <summary>
+        /// Sends join request to a remote server
+        /// </summary>
+        /// <param name="name"></param>
+        public async void SendRoomJoinRequest(string name)
+        {
+            await Task.Run(() =>
+            {
+                PacketBuilder pb = new PacketBuilder();
+                pb.WriteOpcode(153);
+                pb.WriteData(name);
+                client.Client.Send(pb.GetPacketBytes());
+            });
+        }
+
+
         #endregion
 
         #region Read Packet Methods
@@ -309,6 +327,9 @@ namespace Source.Net
                         case 152:
                             ReadSearchResponce();
                             break;
+                        case 153:
+                            ReadJoinRoomResponce();
+                            break;
                         case 159:
                             ReadRoomList();
                             break;
@@ -327,6 +348,25 @@ namespace Source.Net
             {
                 ReadPackets();
             });
+        }
+
+
+        public void ReadJoinRoomResponce()
+        {
+            try
+            {
+                if (pr != null)
+                {
+                    RoomModel room = pr.ReadRoom();
+                    room.IsJoined = pr.ReadBoolean();
+
+                    if (room.IsJoined)
+                    {
+                        RoomJoined?.Invoke(room);
+                    }
+                }
+            }
+            catch (Exception) { }
         }
 
 

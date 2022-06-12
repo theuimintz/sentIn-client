@@ -26,6 +26,8 @@ namespace Source.MVVM.ViewModel.Main
             get => room.Name;
         }
 
+        public bool IsJoined => room.IsJoined;
+
 
         public ObservableCollection<MessageModel> Messages { get; }
 
@@ -58,17 +60,25 @@ namespace Source.MVVM.ViewModel.Main
 
 
         /// <summary>
+        /// Sends join request to a remote server
+        /// </summary>
+        public RelayCommand JoinRoomCommand { get; }
+
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public RoomViewModel(ViewModelStore viewModelStore, Server server, RoomModel roomModel) : base(viewModelStore)
         {
             this.server = server;
+            this.server.RoomJoined += OnRoomJoined;
 
             currentMessage = string.Empty;
             room = roomModel;
 
             GoHomeCommand = new RelayCommand(o => OnGoHome());
             SendMessageCommand = new RelayCommand(o => OnSendMessage(), w => currentMessage != string.Empty);
+            JoinRoomCommand = new RelayCommand(o => OnJoinRoom());
 
             Messages = new ObservableCollection<MessageModel>();
         }
@@ -76,6 +86,15 @@ namespace Source.MVVM.ViewModel.Main
         #endregion
 
         #region Server events handling
+
+        private void OnRoomJoined(RoomModel room)
+        {
+            if (room.UID == this.room.UID)
+            {
+                this.room.IsJoined = true;
+                OnPropertyChanged(nameof(IsJoined));
+            }
+        }
 
         private void OnMessageReceived(MessageModel message)
         {
@@ -115,6 +134,12 @@ namespace Source.MVVM.ViewModel.Main
         #endregion
 
         #region Commands handling
+
+
+        private void OnJoinRoom()
+        {
+            server.SendRoomJoinRequest(Name);
+        }
 
         private void OnGoHome()
         {

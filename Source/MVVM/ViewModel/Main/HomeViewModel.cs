@@ -75,6 +75,7 @@ namespace Source.MVVM.ViewModel.Main
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
+                        room.IsJoined = true;
                         RoomList.Add(room);
                     });
                 }
@@ -90,6 +91,11 @@ namespace Source.MVVM.ViewModel.Main
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
+                room.ForEach(x =>
+                {
+                    if (new List<RoomModel>(RoomList).Exists(y => y.Name == x.Name))
+                        x.IsJoined = true;
+                });
                 SearchRoomList = new ObservableCollection<RoomModel>(room);
                 OnPropertyChanged(nameof(SearchRoomList));
             });

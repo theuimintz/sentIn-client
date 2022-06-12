@@ -34,6 +34,18 @@ namespace Source.MVVM.Model
         }
 
 
+        private bool isJoined = false;
+        public bool IsJoined
+        {
+            get => isJoined;
+            set
+            {
+                isJoined = value;
+                OnPropertyChanged(nameof(IsJoined));
+            }
+        }
+
+
         /// <summary>
         /// Constructor of Room Model
         /// </summary>
